@@ -56,11 +56,11 @@ class ShibaList extends Component {
           // <Cards onEnd={this.swipeFinish} className="master-root">
           //   {shibas.map(shiba => (
           //     <ShibaItem
-          //       key={shiba.id}
-          //       id={shiba.id}
-          //       image={shiba.image}
+          //       id={shiba}
+          //       image={shiba}
           //       swipeRightShiba={this.props.swipeRightShiba}
           //       swipeLeftShiba={this.props.swipeLeftShiba}
+          //       toggleMatch={this.props.toggleMatchModal}
           //     />
           //   ))}
           // </Cards>
@@ -71,11 +71,12 @@ class ShibaList extends Component {
                 key={shiba}
                 image={shiba}
                 swipeRightShiba={this.props.swipeRightShiba}
-                swipeLeftShiba={this.swipeLeftShiba}
+                swipeLeftShiba={this.props.swipeLeftShiba}
                 toggleMatch={this.props.toggleMatchModal}
               />
             ))}
           </div>
+
         )}
       </ShibaListContainer>
     );

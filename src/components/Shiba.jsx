@@ -47,8 +47,9 @@ class Shiba extends PureComponent {
 
     return (
       // <Card onSwipeRight={this.onSwipeRight} onSwipeLeft={this.onSwipeLeft}>
-      //   <img src={image} alt="" />
+      //   <img src={image} alt="" width="500" />
       // </Card>
+
       <div>
         <img src={image} alt="" width="500" />
       </div>
