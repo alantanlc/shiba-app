@@ -10,7 +10,7 @@ import {
 } from "../services/Shibas/actions";
 import ShibaItem from "./Shiba";
 import { Card, CardWrapper } from "react-swipeable-cards";
-import { Button, Modal, ModalBody } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const ShibaListContainer = styled.div`
   margin-top: 25px;
@@ -18,7 +18,7 @@ const ShibaListContainer = styled.div`
 
 const LoadingText = styled.h3`
     position: relative;
-    color #FFFFFF;
+    color #333;
 `;
 
 class ShibaList extends Component {
@@ -27,10 +27,12 @@ class ShibaList extends Component {
 
     this.state = {
       matchedShiba: "",
-      modal: false
+      modal: false,
+      profileModal: false
     };
 
     this.toggle = this.toggle.bind(this);
+    this.toggleProfile = this.toggleProfile.bind(this);
   }
 
   static propTypes = {
@@ -52,8 +54,6 @@ class ShibaList extends Component {
 
   onSwipeRight(data) {
     console.log("I was swiped right");
-    console.log(data);
-
     this.state.matchedShiba = data;
     this.toggle();
   }
@@ -64,11 +64,19 @@ class ShibaList extends Component {
 
   onDoubleTap(data) {
     console.log("I was double tapped");
+    this.state.matchedShiba = data;
+    this.toggleProfile();
   }
 
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
+    }));
+  }
+
+  toggleProfile() {
+    this.setState(prevState => ({
+      profileModal: !prevState.profileModal
     }));
   }
 
@@ -101,6 +109,24 @@ class ShibaList extends Component {
             ))}
           </CardWrapper>
         )}
+        <Modal isOpen={this.state.profileModal}>
+          <ModalHeader toggle={this.toggleProfile} />
+          <ModalBody>
+            <div className="d-flex">
+                <div>
+                  <img src={this.state.matchedShiba} width="100%" alt="" />
+                </div>
+            </div>
+            <br />
+            <h3>Tommy, 28</h3>
+            <p>
+
+              2 kilometers away
+            </p>
+            <hr />
+            <p>Woof woof woof woof woof</p>
+          </ModalBody>
+        </Modal>
         <Modal isOpen={this.state.modal}>
           <ModalBody className="text-center">
             <h3>It's a Match!</h3>
@@ -133,7 +159,10 @@ class ShibaList extends Component {
               Say Woof
             </Button>
             <br />
-            <Button color="link" onClick={this.toggle}>Continue Swiping</Button>
+            <br />
+            <Button color="link" size="sm" onClick={this.toggle}>
+              Continue Swiping
+            </Button>
           </ModalBody>
         </Modal>
       </ShibaListContainer>
