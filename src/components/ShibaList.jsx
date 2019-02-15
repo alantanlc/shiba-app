@@ -26,7 +26,7 @@ class ShibaList extends Component {
     super(props);
 
     this.state = {
-      matchedShiba: '',
+      matchedShiba: "",
       modal: false
     };
 
@@ -52,6 +52,7 @@ class ShibaList extends Component {
 
   onSwipeRight(data) {
     console.log("I was swiped right");
+    console.log(data);
 
     this.state.matchedShiba = data;
     this.toggle();
@@ -102,11 +103,13 @@ class ShibaList extends Component {
         )}
         <Modal isOpen={this.state.modal}>
           <ModalBody className="text-center">
-            <h3>It's a match!</h3>
+            <h3>It's a Match!</h3>
+            <br />
+            <br />
             <div className="d-flex justify-content-center">
               <div>
                 <img
-                  src="https://cdn.shibe.online/shibes/7d37d4fe44e984a7a5b68c4da8600832f56ea61d.jpg"
+                  src="https://cdn.shibe.online/shibes/a85627eda959d8222eb4b9544b7b1292d624376a.jpg"
                   alt=""
                   width="150"
                   height="150"
@@ -124,11 +127,13 @@ class ShibaList extends Component {
                 />
               </div>
             </div>
+            <br />
+            <br />
             <Button color="primary" onClick={this.toggle}>
-              Say Woof!
+              Say Woof
             </Button>
-            &nbsp;
-            <Button onClick={this.toggle}>Continue Swiping</Button>
+            <br />
+            <Button color="link" onClick={this.toggle}>Continue Swiping</Button>
           </ModalBody>
         </Modal>
       </ShibaListContainer>
