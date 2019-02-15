@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Cards from "react-swipe-card";
 import { connect } from "react-redux";
 import {
   getShibas,
@@ -10,6 +9,7 @@ import {
   toggleMatchModal
 } from "../services/Shibas/actions";
 import ShibaItem from "./Shiba";
+import { Card, CardWrapper } from "react-swipeable-cards";
 
 const ShibaListContainer = styled.div`
   margin-top: 25px;
@@ -36,6 +36,7 @@ class ShibaList extends Component {
 
   componentWillMount() {
     this.props.getShibas();
+    // console.log(this.props.state.Shibas);
   }
 
   swipeFinish = () => {
@@ -53,30 +54,17 @@ class ShibaList extends Component {
         {getting ? (
           <LoadingText className="text-center">Loading...</LoadingText>
         ) : (
-          // <Cards onEnd={this.swipeFinish} className="master-root">
-          //   {shibas.map(shiba => (
-          //     <ShibaItem
-          //       id={shiba}
-          //       image={shiba}
-          //       swipeRightShiba={this.props.swipeRightShiba}
-          //       swipeLeftShiba={this.props.swipeLeftShiba}
-          //       toggleMatch={this.props.toggleMatchModal}
-          //     />
-          //   ))}
-          // </Cards>
-
-          <div>
+          <CardWrapper>
             {shibas.map(shiba => (
-              <ShibaItem
+              <Card
                 key={shiba}
-                image={shiba}
-                swipeRightShiba={this.props.swipeRightShiba}
-                swipeLeftShiba={this.props.swipeLeftShiba}
-                toggleMatch={this.props.toggleMatchModal}
-              />
+                onSwipeRight={this.props.swipeRightShiba}
+                onSwipeLeft={this.props.swipeLeftShiba}
+                style={{ backgroundImage: `url(${shiba})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }}
+              >
+              </Card>
             ))}
-          </div>
-
+          </CardWrapper>
         )}
       </ShibaListContainer>
     );

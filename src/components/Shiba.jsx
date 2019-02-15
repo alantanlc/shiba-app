@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { isEmpty } from "lodash";
-import { Card } from "react-swipe-card";
 
 class Shiba extends PureComponent {
   static propTypes = {
@@ -46,12 +45,8 @@ class Shiba extends PureComponent {
     // const isSwiping = this.isSwiping();
 
     return (
-      // <Card onSwipeRight={this.onSwipeRight} onSwipeLeft={this.onSwipeLeft}>
-      //   <img src={image} alt="" width="500" />
-      // </Card>
-
       <div>
-        <img src={image} alt="" width="500" />
+        <img src={image} alt="" width="100%" />
       </div>
     );
   }
