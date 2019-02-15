@@ -8,7 +8,6 @@ import {
   swipeLeftShiba,
   toggleMatchModal
 } from "../services/Shibas/actions";
-import ShibaItem from "./Shiba";
 import { Card, CardWrapper } from "react-swipeable-cards";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
@@ -55,7 +54,10 @@ class ShibaList extends Component {
   onSwipeRight(data) {
     console.log("I was swiped right");
     this.state.matchedShiba = data;
-    this.toggle();
+
+    if (Math.floor(Math.random() * 3) == 0) {
+      this.toggle();
+    }
   }
 
   onSwipeLeft(data) {
@@ -72,6 +74,10 @@ class ShibaList extends Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+
+    if (this.state.modal) {
+      setTimeout(this.toggle, 1000);
+    }
   }
 
   toggleProfile() {
@@ -113,16 +119,13 @@ class ShibaList extends Component {
           <ModalHeader toggle={this.toggleProfile} />
           <ModalBody>
             <div className="d-flex">
-                <div>
-                  <img src={this.state.matchedShiba} width="100%" alt="" />
-                </div>
+              <div>
+                <img src={this.state.matchedShiba} width="100%" alt="" />
+              </div>
             </div>
             <br />
             <h3>Tommy, 28</h3>
-            <p>
-
-              2 kilometers away
-            </p>
+            <p>2 kilometers away</p>
             <hr />
             <p>Woof woof woof woof woof</p>
           </ModalBody>
