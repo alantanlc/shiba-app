@@ -2,7 +2,7 @@ import {
   SHIBAS_GET_SHIBAS_REQUEST,
   SHIBAS_SWIPE_RIGHT_SHIBA_REQUEST,
   SHIBAS_SWIPE_LEFT_SHIBA_REQUEST,
-  SHIBAS_TOGGLE_MATCHED_MODAL
+  SHIBAS_TOGGLE_MATCH_MODAL
 } from "../types";
 
 export const getShibas = () => ({
@@ -20,6 +20,6 @@ export const swipeLeftShiba = shibaId => ({
 });
 
 export const toggleMatchModal = shibaId => ({
-  type: SHIBAS_TOGGLE_MATCHED_MODAL,
+  type: SHIBAS_TOGGLE_MATCH_MODAL,
   payload: shibaId
 });

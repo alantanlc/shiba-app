@@ -8,7 +8,7 @@ import {
   SHIBAS_SWIPE_LEFT_SHIBA_REQUEST,
   SHIBAS_SWIPE_LEFT_SHIBA_SUCCESS,
   SHIBAS_SWIPE_LEFT_SHIBA_FAILURE,
-  SHIBAS_TOGGLE_MATCHED_MODAL
+  SHIBAS_TOGGLE_MATCH_MODAL
 } from "../types";
 
 const DEFAULT_STATE = {
@@ -49,7 +49,7 @@ export default (state = DEFAULT_STATE, action = {}) => {
           getting: false
         }
       };
-    case SHIBAS_TOGGLE_MATCHED_MODAL:
+    case SHIBAS_TOGGLE_MATCH_MODAL:
       return {
         ...state
       };

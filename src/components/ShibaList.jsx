@@ -10,6 +10,7 @@ import {
 } from "../services/Shibas/actions";
 import ShibaItem from "./Shiba";
 import { Card, CardWrapper } from "react-swipeable-cards";
+import { Button, Modal, ModalBody } from "reactstrap";
 
 const ShibaListContainer = styled.div`
   margin-top: 25px;
@@ -21,6 +22,17 @@ const LoadingText = styled.h3`
 `;
 
 class ShibaList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shiba: "",
+      modal: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
   static propTypes = {
     Shibas: PropTypes.shape({
       shibas: PropTypes.arrayOf(PropTypes.string.isRequired),
@@ -36,11 +48,11 @@ class ShibaList extends Component {
 
   componentWillMount() {
     this.props.getShibas();
-    // console.log(this.props.state.Shibas);
   }
 
   onSwipeRight(data) {
     console.log("I was swiped right");
+    this.toggle(data);
   }
 
   onSwipeLeft(data) {
@@ -49,6 +61,12 @@ class ShibaList extends Component {
 
   onDoubleTap(data) {
     console.log("I was double tapped");
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   render() {
@@ -69,12 +87,48 @@ class ShibaList extends Component {
                 onSwipeRight={this.onSwipeRight.bind(this)}
                 onSwipeLeft={this.onSwipeLeft.bind(this)}
                 onDoubleTap={this.onDoubleTap.bind(this)}
-                style={{ backgroundImage: `url(${shiba})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }}
-              >
-              </Card>
+                data={shiba}
+                style={{
+                  backgroundImage: `url(${shiba})`,
+                  backgroundPosition: `center`,
+                  backgroundSize: `cover`,
+                  backgroundRepeat: `no-repeat`
+                }}
+              />
             ))}
           </CardWrapper>
         )}
+        <Modal isOpen={this.state.modal}>
+          <ModalBody className="text-center">
+            <h3>It's a match!</h3>
+            <div class="d-flex justify-content-center">
+              <div>
+                <img
+                  src="https://cdn.shibe.online/shibes/7d37d4fe44e984a7a5b68c4da8600832f56ea61d.jpg"
+                  alt=""
+                  width="150"
+                  height="150"
+                  class="rounded-circle"
+                />
+              </div>
+              <div>&nbsp;&nbsp;</div>
+              <div>
+                <img
+                  src="https://cdn.shibe.online/shibes/7d37d4fe44e984a7a5b68c4da8600832f56ea61d.jpg"
+                  alt=""
+                  width="150"
+                  height="150"
+                  class="rounded-circle"
+                />
+              </div>
+            </div>
+            <Button color="primary" onClick={this.toggle}>
+              Say Woof!
+            </Button>
+            &nbsp;
+            <Button onClick={this.toggle}>Continue Swiping</Button>
+          </ModalBody>
+        </Modal>
       </ShibaListContainer>
     );
   }
