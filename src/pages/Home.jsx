@@ -28,7 +28,7 @@ class Home extends Component {
           <ShibaList />
         </Container>
         <Container className="container">
-          <Link to="/tc">Terms and conditions</Link>
+          <Link to="/tc">Learn how to score a date with a shiba!</Link>
         </Container>
       </div>
     );

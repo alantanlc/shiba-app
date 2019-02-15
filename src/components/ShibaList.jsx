@@ -39,9 +39,17 @@ class ShibaList extends Component {
     // console.log(this.props.state.Shibas);
   }
 
-  swipeFinish = () => {
-    console.log("swipe finish");
-  };
+  onSwipeRight(data) {
+    console.log("I was swiped right");
+  }
+
+  onSwipeLeft(data) {
+    console.log("I was swiped left");
+  }
+
+  onDoubleTap(data) {
+    console.log("I was double tapped");
+  }
 
   render() {
     const {
@@ -58,8 +66,9 @@ class ShibaList extends Component {
             {shibas.map(shiba => (
               <Card
                 key={shiba}
-                onSwipeRight={this.props.swipeRightShiba}
-                onSwipeLeft={this.props.swipeLeftShiba}
+                onSwipeRight={this.onSwipeRight.bind(this)}
+                onSwipeLeft={this.onSwipeLeft.bind(this)}
+                onDoubleTap={this.onDoubleTap.bind(this)}
                 style={{ backgroundImage: `url(${shiba})`, backgroundPosition: `center`, backgroundSize: `cover`, backgroundRepeat: `no-repeat` }}
               >
               </Card>
