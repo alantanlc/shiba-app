@@ -26,7 +26,7 @@ class ShibaList extends Component {
     super(props);
 
     this.state = {
-      shiba: "",
+      matchedShiba: '',
       modal: false
     };
 
@@ -52,7 +52,9 @@ class ShibaList extends Component {
 
   onSwipeRight(data) {
     console.log("I was swiped right");
-    this.toggle(data);
+
+    this.state.matchedShiba = data;
+    this.toggle();
   }
 
   onSwipeLeft(data) {
@@ -101,24 +103,24 @@ class ShibaList extends Component {
         <Modal isOpen={this.state.modal}>
           <ModalBody className="text-center">
             <h3>It's a match!</h3>
-            <div class="d-flex justify-content-center">
+            <div className="d-flex justify-content-center">
               <div>
                 <img
                   src="https://cdn.shibe.online/shibes/7d37d4fe44e984a7a5b68c4da8600832f56ea61d.jpg"
                   alt=""
                   width="150"
                   height="150"
-                  class="rounded-circle"
+                  className="rounded-circle"
                 />
               </div>
               <div>&nbsp;&nbsp;</div>
               <div>
                 <img
-                  src="https://cdn.shibe.online/shibes/7d37d4fe44e984a7a5b68c4da8600832f56ea61d.jpg"
+                  src={this.state.matchedShiba}
                   alt=""
                   width="150"
                   height="150"
-                  class="rounded-circle"
+                  className="rounded-circle"
                 />
               </div>
             </div>
